@@ -1,0 +1,171 @@
+/* Tailwind: base (resets), components, utilities. Customizations in @layer base and custom class .dropdown-trigger. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  html {
+    @apply scroll-smooth scroll-pt-6;
+    scrollbar-gutter: stable;
+  }
+
+  /* 
+  🟨🟨🟨🟨🟨🟨🟨🟨🟨
+  Browser Main Scrollbar 
+  🟨🟨🟨🟨🟨🟨🟨🟨🟨
+  */
+
+  html::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  html::-webkit-scrollbar-thumb {
+    border-radius   : 2px;
+    background-color: #a37d4c;
+  }
+
+  html::-webkit-scrollbar-track {
+    background-color: #FFFFFF;
+  }
+
+  body {
+    @apply font-secondary text-primary;
+  }
+
+  input::placeholder {
+    @apply text-primary;
+  }
+
+  .h2 {
+    @apply font-primary text-[45px] mb-4;
+  }
+
+  .h3 {
+    @apply text-2xl font-primary font-semibold tracking-[1px] mb-2;
+  }
+
+  .btn {
+    @apply text-[15px] tracking-[3px] font-tertiary uppercase text-white flex-1 transition-all px-8 flex justify-center items-center;
+  }
+
+  .btn-sm {
+    @apply h-[48px];
+  }
+
+  .btn-lg {
+    @apply h-[60px];
+  }
+
+  .btn-primary {
+    @apply bg-accent hover:bg-accent-hover;
+  }
+
+  .btn-secondary {
+    @apply bg-primary hover:bg-accent;
+  }
+
+  .btn-white {
+    @apply bg-white text-[#0a0a0a];
+  }
+
+  .heroSlider {
+    min-height: 600px;
+  }
+  @media (min-width: 960px) {
+  .heroSlider {
+    min-height: 860px;
+  }
+  }
+}
+
+/* Dropdown chevron: smooth 180° rotation when open */
+.dropdown-trigger[aria-expanded="true"] .dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+/* Remove browser default focus outline/ring from dropdown (use only custom border-accent/20) */
+.dropdown-panel:focus,
+.dropdown-panel:focus-visible,
+.dropdown-panel *:focus,
+.dropdown-panel *:focus-visible,
+.dropdown-trigger:focus,
+.dropdown-trigger:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 
+ 💎 LUXURY & MODERN MOTION ANIMATION SYSTEM
+ Style Aman / Belmond / Cheval Blanc - Apple Smooth cubic-bezier(0.16, 1, 0.3, 1)
+*/
+:root {
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-element {
+  will-change: transform, opacity, filter;
+  transition-property: transform, opacity, filter;
+  transition-timing-function: var(--ease-luxury);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hidden Initial States */
+.reveal-element:not(.is-revealed).reveal-fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(4px);
+}
+
+.reveal-element:not(.is-revealed).reveal-fade-down {
+  opacity: 0;
+  transform: translateY(-30px);
+  filter: blur(8px);
+}
+
+.reveal-element:not(.is-revealed).reveal-fade-left {
+  opacity: 0;
+  transform: translateX(35px);
+  filter: blur(8px);
+}
+
+.reveal-element:not(.is-revealed).reveal-fade-right {
+  opacity: 0;
+  transform: translateX(-35px);
+  filter: blur(8px);
+}
+
+.reveal-element:not(.is-revealed).reveal-fade {
+  opacity: 0;
+  filter: blur(10px);
+}
+
+.reveal-element:not(.is-revealed).reveal-scale-up {
+  opacity: 0;
+  transform: scale(0.93) translateY(20px);
+  filter: blur(10px);
+}
+
+.reveal-element:not(.is-revealed).reveal-micro-zoom {
+  opacity: 0;
+  transform: scale(0.95);
+  filter: blur(6px);
+}
+
+/* Active Revealed State */
+.reveal-element.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0px);
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-element {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
