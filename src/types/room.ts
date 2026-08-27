@@ -24,16 +24,4 @@ export interface Room {
   imagesGallery?: string[];
 }
 
-export interface Booking {
-  id: string;
-  roomId: number;
-  roomName: string;
-  checkIn: Date | string | null;
-  checkOut: Date | string | null;
-  adults: string;
-  kids: string;
-  totalPrice: number;
-  guestName: string;
-  createdAt: string;
-}
 

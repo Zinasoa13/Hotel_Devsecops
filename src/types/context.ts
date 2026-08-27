@@ -1,4 +1,5 @@
-import type { Room, Booking } from './room';
+import type { Room } from './room';
+import type { Booking } from './booking';
 
 /** Room context state and actions exposed to consumers via useRoomContext(). */
 export interface RoomContextValue {

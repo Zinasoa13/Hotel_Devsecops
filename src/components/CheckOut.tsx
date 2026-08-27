@@ -6,10 +6,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import "../style/datepicker.css";
 
 // Interop check for DatePicker default export in Vite/ESM environments
-const DatePickerComponent: any =
+const DatePickerComponent =
   typeof DatePicker === "function"
     ? DatePicker
-    : (DatePicker as any)?.default || DatePicker;
+    : ((DatePicker as unknown as { default: typeof DatePicker }).default || DatePicker);
+
 
 /** CheckOut datepicker props: placement of calendar popover and optional full-width in container. */
 type CheckOutProps = {
@@ -61,17 +62,6 @@ export default function CheckOut({
       document.body.style.removeProperty("--datepicker-popper-width");
     };
   }, [popperFullWidth, isOpen]);
-
-  const handleIconClick = () => {
-    suppressOpenRef.current = true;
-    setIsOpen((o) => {
-      if (!o) document.dispatchEvent(new CustomEvent(DATEPICKER_OPEN, { detail: { id: ID } }));
-      return !o;
-    });
-    setTimeout(() => {
-      suppressOpenRef.current = false;
-    }, 200);
-  };
 
   const handleOpen = () => {
     if (suppressOpenRef.current) return;

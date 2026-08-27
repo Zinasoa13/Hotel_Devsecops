@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import type { RoomContextValue, Booking, Room } from '../types';
+import type { RoomContextValue, Room, Booking } from '../types';
 import { mockRooms, mockBookings } from '../data';
+
 
 const RoomInfo = createContext<RoomContextValue | null>(null);
 
