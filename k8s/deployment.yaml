@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotel
+  namespace: hotel
+  labels:
+    app: hotel
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hotel
+  template:
+    metadata:
+      labels:
+        app: hotel
+    spec:
+      containers:
+        - name: hotel
+          image: zinasoa/hotel:v1.0.0
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
