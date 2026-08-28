@@ -15,8 +15,6 @@ spec:
       labels:
         app: hotel
     spec:
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: hotel
           image: zinasoa/hotel:v1.0.0
