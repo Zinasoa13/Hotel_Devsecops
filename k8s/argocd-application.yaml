@@ -1,0 +1,21 @@
+#k8s/argocd-application.yaml (ou dans un repo séparé "argocd-apps")
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hotel
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Zinasoa13/Hotel_Devsecops.git
+    targetRevision: master
+    path: k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hotel
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

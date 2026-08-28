@@ -5,8 +5,13 @@ metadata:
   namespace: hotel
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: selfsigned-issuer
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - hotel.local
+      secretName: hotel-tls
   rules:
     - host: hotel.local
       http:
